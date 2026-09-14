@@ -31,7 +31,7 @@ async function request(path, options = {}) {
   } catch {
     throw new ApiError(
       "Can't reach the backend. Confirm the API is running at " + API_BASE,
-      0
+      0,
     );
   }
 
@@ -52,8 +52,9 @@ async function request(path, options = {}) {
 // GET /ocean-data — pulls stored surface values for a date + location,
 // used to prefill the query form. Returns null if nothing is stored yet
 // rather than throwing, since "no data for this point" is an expected case.
-export async function fetchOceanData(date, lat, lon) {
+export async function fetchOceanData(date, lat, lon, refresh = false) {
   const params = new URLSearchParams({ date, lat, lon });
+  if (refresh) params.set("refresh", "true");
   try {
     return await request(`/ocean-data?${params.toString()}`);
   } catch (err) {
@@ -77,11 +78,11 @@ export async function submitPrediction(payload) {
 export function toGridIndex(lat, lon) {
   const iLat = Math.min(
     DOMAIN.nLat - 1,
-    Math.max(0, Math.round((lat - DOMAIN.latMin) / DOMAIN.step))
+    Math.max(0, Math.round((lat - DOMAIN.latMin) / DOMAIN.step)),
   );
   const iLon = Math.min(
     DOMAIN.nLon - 1,
-    Math.max(0, Math.round((lon - DOMAIN.lonMin) / DOMAIN.step))
+    Math.max(0, Math.round((lon - DOMAIN.lonMin) / DOMAIN.step)),
   );
   return { iLat, iLon };
 }

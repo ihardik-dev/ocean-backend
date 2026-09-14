@@ -6,7 +6,7 @@ import torch.nn.functional as F
 from app.config import DEPTHS
 
 
-MODEL_PATH = "/app/model/oceanembed_unet_v1.pth"
+MODEL_PATH = "/app/model/oceanembed_unet_with_wind.pth"
 
 
 class ConvBlock(nn.Module):
@@ -28,7 +28,7 @@ class ConvBlock(nn.Module):
 
 
 class OceanUNet(nn.Module):
-    def __init__(self, in_channels=5, out_channels=15, base=16):
+    def __init__(self, in_channels=7, out_channels=15, base=16):
         super().__init__()
 
         # Encoder
@@ -157,24 +157,26 @@ def predict_temperature(ocean_data):
         ocean_data["sss"],
         ocean_data["ssh"],
         ocean_data["current_u"],
-        ocean_data["current_v"]
+        ocean_data["current_v"],
+        ocean_data["wind_u"],
+        ocean_data["wind_v"]
     ]
 
-    # Convert 5 input values into PyTorch tensor
+    # Convert 7 input values into PyTorch tensor
     x = torch.tensor(
         values,
         dtype=torch.float32
     )
 
     # Shape:
-    # [5] → [1, 5, 1, 1]
-    x = x.view(1, 5, 1, 1)
+    # [7] → [1, 7, 1, 1]
+    x = x.view(1, 7, 1, 1)
 
     # MVP:
-    # Expand the 5 values across the complete grid
+    # Expand the 7 values across the complete grid
     x = x.expand(
         1,
-        5,
+        7,
         100,
         240
     )

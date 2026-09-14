@@ -16,6 +16,8 @@ const DEFAULT_FORM = {
   ssh: "0.4",
   current_u: "0.18",
   current_v: "-0.07",
+  wind_u: "4.2",
+  wind_v: "-1.5",
 };
 
 export default function App() {
@@ -30,29 +32,29 @@ export default function App() {
     setForm((prev) => ({ ...prev, [key]: value }));
   };
 
- useEffect(() => {
-  if (result && !result.adjusted) {
-    const newTemps = [...result.temperatures];
-    result.depths.forEach((d, i) => {
-      if (d === 30) {
-        newTemps[i] += 8.7;
-      }else if(d==50){
-        newTemps[i] += 21.5;
-      }else if(d==75){
-        newTemps[i] += 15;
-      }else if(d==100){
-        newTemps[i] += 8;
-      }
-    });
+  useEffect(() => {
+    if (result && !result.adjusted) {
+      const newTemps = [...result.temperatures];
+      result.depths.forEach((d, i) => {
+        if (d === 30) {
+          newTemps[i] += 8.7;
+        } else if (d == 50) {
+          newTemps[i] += 21.5;
+        } else if (d == 75) {
+          newTemps[i] += 15;
+        } else if (d == 100) {
+          newTemps[i] += 8;
+        } 
+      });
 
-    setResult(prev => ({
-      ...prev,
-      temperatures: newTemps,
-      adjusted: true,   // mark as adjusted
-    }));
-  }
-}, [result]);
-  
+      setResult((prev) => ({
+        ...prev,
+        temperatures: newTemps,
+        adjusted: true, // mark as adjusted
+      }));
+    }
+  }, [result]);
+
   const handleFetchSurface = async () => {
     setFetching(true);
     setFetchNote("");
@@ -61,7 +63,7 @@ export default function App() {
       const data = await fetchOceanData(form.date, form.lat, form.lon);
       if (!data) {
         setFetchNote(
-          "No stored surface data for this date and location. Enter values manually."
+          "No stored surface data for this date and location. Enter values manually.",
         );
       } else {
         setForm((prev) => ({
@@ -71,6 +73,8 @@ export default function App() {
           ssh: String(data.ssh),
           current_u: String(data.current_u),
           current_v: String(data.current_v),
+          wind_u: String(data.wind_u),
+          wind_v: String(data.wind_v),
         }));
         setFetchNote("Surface data loaded. Review before reconstructing.");
       }
@@ -97,6 +101,8 @@ export default function App() {
         ssh: Number(form.ssh),
         current_u: Number(form.current_u),
         current_v: Number(form.current_v),
+        wind_u: Number(form.wind_u),
+        wind_v: Number(form.wind_v),
       };
 
       const response = await submitPrediction(payload);
@@ -126,7 +132,7 @@ export default function App() {
             <p>Subsurface temperature reconstruction — North Indian Ocean</p>
           </div>
         </div>
-        <span className="badge">MVP · 5-input model</span>
+        <span className="badge">MVP · 7-input model</span>
       </header>
 
       <main className="app-main">
@@ -187,8 +193,8 @@ export default function App() {
       <footer className="app-footer">
         <p>
           Proof-of-concept output from a CNN trained on GLORYS reanalysis.
-          Current model uses five surface inputs (SST, SSS, SSH, surface
-          currents) — wind is not yet included.
+          Current model uses seven surface inputs (SST, SSS, SSH, surface
+          currents, and wind).
         </p>
       </footer>
     </div>

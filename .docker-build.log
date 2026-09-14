@@ -1,0 +1,356 @@
+#1 [internal] load local bake definitions
+#1 reading from stdin 536B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile:
+#2 transferring dockerfile: 265B 0.0s done
+#2 DONE 0.2s
+
+#3 [internal] load metadata for docker.io/library/python:3.12-slim
+#3 DONE 1.7s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B 0.0s done
+#4 DONE 0.1s
+
+#5 [1/5] FROM docker.io/library/python:3.12-slim@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea
+#5 resolve docker.io/library/python:3.12-slim@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea 0.1s done
+#5 DONE 0.1s
+
+#6 [2/5] WORKDIR /app
+#6 CACHED
+
+#7 [internal] load build context
+#7 transferring context: 91.25kB 0.1s done
+#7 DONE 0.1s
+
+#8 [3/5] COPY requirements.txt .
+#8 DONE 1.0s
+
+#9 [4/5] RUN pip install --no-cache-dir -r requirements.txt
+#9 9.679 Looking in indexes: https://pypi.org/simple, https://download.pytorch.org/whl/cpu
+#9 11.40 Collecting fastapi (from -r requirements.txt (line 1))
+#9 11.61   Downloading fastapi-0.141.1-py3-none-any.whl.metadata (27 kB)
+#9 13.40 Collecting sqlalchemy (from -r requirements.txt (line 3))
+#9 13.41   Downloading sqlalchemy-2.0.52-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (9.6 kB)
+#9 14.23 Collecting psycopg2-binary (from -r requirements.txt (line 4))
+#9 14.27   Downloading psycopg2_binary-2.9.13-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (4.9 kB)
+#9 17.05 Collecting numpy (from -r requirements.txt (line 5))
+#9 17.07   Downloading numpy-2.5.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+#9 17.64 Collecting torch==2.5.1+cpu (from -r requirements.txt (line 10))
+#9 18.08   Downloading https://download-r2.pytorch.org/whl/cpu/torch-2.5.1%2Bcpu-cp312-cp312-linux_x86_64.whl (174.6 MB)
+#9 33.94      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 174.6/174.6 MB 11.2 MB/s eta 0:00:00
+#9 35.16 Collecting copernicusmarine (from -r requirements.txt (line 11))
+#9 35.18   Downloading copernicusmarine-2.4.1-py3-none-any.whl.metadata (8.2 kB)
+#9 35.95 Collecting xarray (from -r requirements.txt (line 12))
+#9 35.97   Downloading xarray-2026.7.0-py3-none-any.whl.metadata (12 kB)
+#9 36.77 Collecting netCDF4 (from -r requirements.txt (line 13))
+#9 36.79   Downloading netcdf4-1.7.4-cp311-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (2.1 kB)
+#9 37.51 Collecting cdsapi>=0.7.7 (from -r requirements.txt (line 14))
+#9 37.53   Downloading cdsapi-0.7.7-py2.py3-none-any.whl.metadata (3.1 kB)
+#9 38.28 Collecting python-dotenv (from -r requirements.txt (line 15))
+#9 38.29   Downloading python_dotenv-1.2.3-py3-none-any.whl.metadata (29 kB)
+#9 39.02 Collecting uvicorn[standard] (from -r requirements.txt (line 2))
+#9 39.03   Downloading uvicorn-0.52.4-py3-none-any.whl.metadata (6.6 kB)
+#9 39.21 Collecting filelock (from torch==2.5.1+cpu->-r requirements.txt (line 10))
+#9 39.23   Downloading filelock-3.32.6-py3-none-any.whl.metadata (2.0 kB)
+#9 39.39 Collecting typing-extensions>=4.8.0 (from torch==2.5.1+cpu->-r requirements.txt (line 10))
+#9 39.42   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#9 39.64 Collecting networkx (from torch==2.5.1+cpu->-r requirements.txt (line 10))
+#9 39.66   Downloading networkx-3.6.1-py3-none-any.whl.metadata (6.8 kB)
+#9 39.80 Collecting jinja2 (from torch==2.5.1+cpu->-r requirements.txt (line 10))
+#9 39.88   Downloading https://download.pytorch.org/whl/jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+#9 40.08 Collecting fsspec (from torch==2.5.1+cpu->-r requirements.txt (line 10))
+#9 40.09   Downloading fsspec-2026.7.0-py3-none-any.whl.metadata (10 kB)
+#9 40.52 Collecting setuptools (from torch==2.5.1+cpu->-r requirements.txt (line 10))
+#9 40.54   Downloading setuptools-84.0.0-py3-none-any.whl.metadata (6.6 kB)
+#9 40.67 Collecting sympy==1.13.1 (from torch==2.5.1+cpu->-r requirements.txt (line 10))
+#9 40.69   Downloading sympy-1.13.1-py3-none-any.whl.metadata (12 kB)
+#9 40.83 Collecting mpmath<1.4,>=1.1.0 (from sympy==1.13.1->torch==2.5.1+cpu->-r requirements.txt (line 10))
+#9 40.84   Downloading mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+#9 41.65 Collecting starlette>=0.46.0 (from fastapi->-r requirements.txt (line 1))
+#9 41.66   Downloading starlette-1.6.0-py3-none-any.whl.metadata (6.4 kB)
+#9 42.56 Collecting pydantic>=2.9.0 (from fastapi->-r requirements.txt (line 1))
+#9 42.57   Downloading pydantic-2.13.5-py3-none-any.whl.metadata (110 kB)
+#9 43.31 Collecting typing-inspection>=0.4.2 (from fastapi->-r requirements.txt (line 1))
+#9 43.35   Downloading typing_inspection-0.4.4-py3-none-any.whl.metadata (2.6 kB)
+#9 44.07 Collecting annotated-doc>=0.0.2 (from fastapi->-r requirements.txt (line 1))
+#9 44.09   Downloading annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+#9 44.82 Collecting click>=7.0 (from uvicorn[standard]->-r requirements.txt (line 2))
+#9 44.83   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+#9 45.53 Collecting h11>=0.8 (from uvicorn[standard]->-r requirements.txt (line 2))
+#9 45.54   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+#9 45.87 Collecting httptools>=0.8.0 (from uvicorn[standard]->-r requirements.txt (line 2))
+#9 45.89   Downloading httptools-0.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (3.5 kB)
+#9 46.62 Collecting pyyaml>=5.1 (from uvicorn[standard]->-r requirements.txt (line 2))
+#9 46.64   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+#9 47.52 Collecting uvloop>=0.15.1 (from uvicorn[standard]->-r requirements.txt (line 2))
+#9 47.55   Downloading uvloop-0.22.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (4.9 kB)
+#9 48.48 Collecting watchfiles>=0.20 (from uvicorn[standard]->-r requirements.txt (line 2))
+#9 48.50   Downloading watchfiles-1.2.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+#9 49.61 Collecting websockets>=13.0 (from uvicorn[standard]->-r requirements.txt (line 2))
+#9 49.62   Downloading websockets-17.1-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.3 kB)
+#9 51.40 Collecting greenlet>=1 (from sqlalchemy->-r requirements.txt (line 3))
+#9 51.42   Downloading greenlet-3.5.5-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+#9 52.11 Collecting arcosparse<0.6.0,>=0.5.1 (from copernicusmarine->-r requirements.txt (line 11))
+#9 52.13   Downloading arcosparse-0.5.1-py3-none-any.whl.metadata (7.7 kB)
+#9 53.90 Collecting boto3>=1.26 (from copernicusmarine->-r requirements.txt (line 11))
+#9 53.91   Downloading boto3-1.43.93-py3-none-any.whl.metadata (6.6 kB)
+#9 54.64 Collecting dask>=2024.8.1 (from copernicusmarine->-r requirements.txt (line 11))
+#9 54.65   Downloading dask-2026.8.0-py3-none-any.whl.metadata (3.8 kB)
+#9 55.34 Collecting h5netcdf<2.0.0,>=1.4.0 (from h5netcdf[h5py]<2.0.0,>=1.4.0->copernicusmarine->-r requirements.txt (line 11))
+#9 55.35   Downloading h5netcdf-1.8.1-py3-none-any.whl.metadata (15 kB)
+#9 56.09 Collecting pystac>=1.11.0 (from copernicusmarine->-r requirements.txt (line 11))
+#9 56.10   Downloading pystac-1.15.2-py3-none-any.whl.metadata (6.3 kB)
+#9 56.25 Collecting requests>=2.27.1 (from copernicusmarine->-r requirements.txt (line 11))
+#9 56.26   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+#9 56.97 Collecting semver>=3.0.2 (from copernicusmarine->-r requirements.txt (line 11))
+#9 57.00   Downloading semver-3.1.0-py3-none-any.whl.metadata (6.9 kB)
+#9 57.23 Collecting tqdm>=4.65.0 (from copernicusmarine->-r requirements.txt (line 11))
+#9 57.28   Downloading tqdm-4.70.1-py3-none-any.whl.metadata (57 kB)
+#9 58.10 Collecting zarr>=2.18.3 (from copernicusmarine->-r requirements.txt (line 11))
+#9 58.14   Downloading zarr-3.3.0-py3-none-any.whl.metadata (4.9 kB)
+#9 58.47 Collecting packaging>=24.2 (from xarray->-r requirements.txt (line 12))
+#9 58.50   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+#9 60.01 Collecting pandas>=2.2 (from xarray->-r requirements.txt (line 12))
+#9 60.03   Downloading pandas-3.0.5-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (79 kB)
+#9 60.89 Collecting cftime (from netCDF4->-r requirements.txt (line 13))
+#9 60.90   Downloading cftime-1.6.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (8.7 kB)
+#9 61.03 Collecting certifi (from netCDF4->-r requirements.txt (line 13))
+#9 61.04   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+#9 61.73 Collecting ecmwf-datastores-client>=0.4.0 (from cdsapi>=0.7.7->-r requirements.txt (line 14))
+#9 61.75   Downloading ecmwf_datastores_client-0.5.3-py3-none-any.whl.metadata (8.7 kB)
+#9 62.77 Collecting pyarrow>=17.0.0 (from arcosparse<0.6.0,>=0.5.1->copernicusmarine->-r requirements.txt (line 11))
+#9 62.78   Downloading pyarrow-25.0.1-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (3.0 kB)
+#9 65.09 Collecting botocore<1.44.0,>=1.43.93 (from boto3>=1.26->copernicusmarine->-r requirements.txt (line 11))
+#9 65.11   Downloading botocore-1.43.93-py3-none-any.whl.metadata (5.6 kB)
+#9 65.83 Collecting jmespath<2.0.0,>=0.7.1 (from boto3>=1.26->copernicusmarine->-r requirements.txt (line 11))
+#9 65.84   Downloading jmespath-1.1.0-py3-none-any.whl.metadata (7.6 kB)
+#9 66.59 Collecting s3transfer<0.20.0,>=0.19.0 (from boto3>=1.26->copernicusmarine->-r requirements.txt (line 11))
+#9 66.62   Downloading s3transfer-0.19.2-py3-none-any.whl.metadata (1.7 kB)
+#9 67.41 Collecting cloudpickle>=3.0.0 (from dask>=2024.8.1->copernicusmarine->-r requirements.txt (line 11))
+#9 67.43   Downloading cloudpickle-3.1.2-py3-none-any.whl.metadata (7.1 kB)
+#9 68.14 Collecting partd>=1.4.0 (from dask>=2024.8.1->copernicusmarine->-r requirements.txt (line 11))
+#9 68.16   Downloading partd-1.4.2-py3-none-any.whl.metadata (4.6 kB)
+#9 68.89 Collecting toolz>=0.12.0 (from dask>=2024.8.1->copernicusmarine->-r requirements.txt (line 11))
+#9 68.91   Downloading toolz-1.1.0-py3-none-any.whl.metadata (5.1 kB)
+#9 69.62 Collecting attrs>=23.1.0 (from ecmwf-datastores-client>=0.4.0->cdsapi>=0.7.7->-r requirements.txt (line 14))
+#9 69.63   Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+#9 70.34 Collecting multiurl>=0.3.7 (from ecmwf-datastores-client>=0.4.0->cdsapi>=0.7.7->-r requirements.txt (line 14))
+#9 70.37   Downloading multiurl-0.3.9-py3-none-any.whl.metadata (2.8 kB)
+#9 71.19 Collecting h5py (from h5netcdf[h5py]<2.0.0,>=1.4.0->copernicusmarine->-r requirements.txt (line 11))
+#9 71.22   Downloading h5py-3.16.0-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (3.0 kB)
+#9 71.94 Collecting python-dateutil>=2.8.2 (from pandas>=2.2->xarray->-r requirements.txt (line 12))
+#9 71.95   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+#9 72.64 Collecting annotated-types>=0.6.0 (from pydantic>=2.9.0->fastapi->-r requirements.txt (line 1))
+#9 72.64   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+#9 77.16 Collecting pydantic-core==2.46.5 (from pydantic>=2.9.0->fastapi->-r requirements.txt (line 1))
+#9 77.17   Downloading pydantic_core-2.46.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.6 kB)
+#9 77.88 Collecting pystac-core<2,>=1.15.0 (from pystac>=1.11.0->copernicusmarine->-r requirements.txt (line 11))
+#9 77.89   Downloading pystac_core-1.15.2-py3-none-any.whl.metadata (1.3 kB)
+#9 78.59 Collecting pystac-ext-classification (from pystac>=1.11.0->copernicusmarine->-r requirements.txt (line 11))
+#9 78.61   Downloading pystac_ext_classification-2.0.1-py3-none-any.whl.metadata (2.1 kB)
+#9 79.32 Collecting pystac-ext-datacube (from pystac>=1.11.0->copernicusmarine->-r requirements.txt (line 11))
+#9 79.33   Downloading pystac_ext_datacube-2.2.1-py3-none-any.whl.metadata (1.8 kB)
+#9 80.02 Collecting pystac-ext-eo (from pystac>=1.11.0->copernicusmarine->-r requirements.txt (line 11))
+#9 80.03   Downloading pystac_ext_eo-1.1.1-py3-none-any.whl.metadata (1.9 kB)
+#9 80.73 Collecting pystac-ext-file (from pystac>=1.11.0->copernicusmarine->-r requirements.txt (line 11))
+#9 80.75   Downloading pystac_ext_file-2.1.1-py3-none-any.whl.metadata (1.8 kB)
+#9 81.04 Collecting pystac-ext-grid (from pystac>=1.11.0->copernicusmarine->-r requirements.txt (line 11))
+#9 81.06   Downloading pystac_ext_grid-1.1.1-py3-none-any.whl.metadata (1.9 kB)
+#9 81.74 Collecting pystac-ext-item-assets (from pystac>=1.11.0->copernicusmarine->-r requirements.txt (line 11))
+#9 81.77   Downloading pystac_ext_item_assets-1.0.1-py3-none-any.whl.metadata (1.9 kB)
+#9 82.46 Collecting pystac-ext-label (from pystac>=1.11.0->copernicusmarine->-r requirements.txt (line 11))
+#9 82.47   Downloading pystac_ext_label-1.0.2-py3-none-any.whl.metadata (1.9 kB)
+#9 83.14 Collecting pystac-ext-mgrs (from pystac>=1.11.0->copernicusmarine->-r requirements.txt (line 11))
+#9 83.16   Downloading pystac_ext_mgrs-1.0.1-py3-none-any.whl.metadata (1.8 kB)
+#9 83.85 Collecting pystac-ext-mlm (from pystac>=1.11.0->copernicusmarine->-r requirements.txt (line 11))
+#9 83.87   Downloading pystac_ext_mlm-1.4.1-py3-none-any.whl.metadata (2.2 kB)
+#9 84.57 Collecting pystac-ext-pointcloud (from pystac>=1.11.0->copernicusmarine->-r requirements.txt (line 11))
+#9 84.60   Downloading pystac_ext_pointcloud-1.0.1-py3-none-any.whl.metadata (1.8 kB)
+#9 85.32 Collecting pystac-ext-projection (from pystac>=1.11.0->copernicusmarine->-r requirements.txt (line 11))
+#9 85.43   Downloading pystac_ext_projection-2.0.1-py3-none-any.whl.metadata (2.1 kB)
+#9 86.15 Collecting pystac-ext-raster (from pystac>=1.11.0->copernicusmarine->-r requirements.txt (line 11))
+#9 86.27   Downloading pystac_ext_raster-1.1.1-py3-none-any.whl.metadata (1.9 kB)
+#9 86.98 Collecting pystac-ext-render (from pystac>=1.11.0->copernicusmarine->-r requirements.txt (line 11))
+#9 87.01   Downloading pystac_ext_render-2.0.0-py3-none-any.whl.metadata (1.8 kB)
+#9 87.73 Collecting pystac-ext-sar (from pystac>=1.11.0->copernicusmarine->-r requirements.txt (line 11))
+#9 87.74   Downloading pystac_ext_sar-1.0.1-py3-none-any.whl.metadata (1.8 kB)
+#9 88.03 Collecting pystac-ext-sat (from pystac>=1.11.0->copernicusmarine->-r requirements.txt (line 11))
+#9 88.06   Downloading pystac_ext_sat-1.0.1-py3-none-any.whl.metadata (1.8 kB)
+#9 88.82 Collecting pystac-ext-scientific (from pystac>=1.11.0->copernicusmarine->-r requirements.txt (line 11))
+#9 88.83   Downloading pystac_ext_scientific-1.0.1-py3-none-any.whl.metadata (1.8 kB)
+#9 89.53 Collecting pystac-ext-storage (from pystac>=1.11.0->copernicusmarine->-r requirements.txt (line 11))
+#9 89.55   Downloading pystac_ext_storage-2.0.1-py3-none-any.whl.metadata (1.9 kB)
+#9 90.28 Collecting pystac-ext-table (from pystac>=1.11.0->copernicusmarine->-r requirements.txt (line 11))
+#9 90.36   Downloading pystac_ext_table-1.2.1-py3-none-any.whl.metadata (1.8 kB)
+#9 91.07 Collecting pystac-ext-timestamps (from pystac>=1.11.0->copernicusmarine->-r requirements.txt (line 11))
+#9 91.09   Downloading pystac_ext_timestamps-1.1.1-py3-none-any.whl.metadata (1.8 kB)
+#9 91.81 Collecting pystac-ext-version (from pystac>=1.11.0->copernicusmarine->-r requirements.txt (line 11))
+#9 91.83   Downloading pystac_ext_version-1.2.1-py3-none-any.whl.metadata (1.9 kB)
+#9 92.29 Collecting pystac-ext-view (from pystac>=1.11.0->copernicusmarine->-r requirements.txt (line 11))
+#9 92.31   Downloading pystac_ext_view-1.0.1-py3-none-any.whl.metadata (1.8 kB)
+#9 93.02 Collecting pystac-ext-xarray-assets (from pystac>=1.11.0->copernicusmarine->-r requirements.txt (line 11))
+#9 93.03   Downloading pystac_ext_xarray_assets-1.0.1-py3-none-any.whl.metadata (1.9 kB)
+#9 93.44 Collecting charset_normalizer<4,>=2 (from requests>=2.27.1->copernicusmarine->-r requirements.txt (line 11))
+#9 93.46   Downloading charset_normalizer-3.5.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (45 kB)
+#9 93.63 Collecting idna<4,>=2.5 (from requests>=2.27.1->copernicusmarine->-r requirements.txt (line 11))
+#9 93.66   Downloading idna-3.19-py3-none-any.whl.metadata (9.2 kB)
+#9 93.83 Collecting urllib3<3,>=1.26 (from requests>=2.27.1->copernicusmarine->-r requirements.txt (line 11))
+#9 93.85   Downloading urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)
+#9 94.70 Collecting anyio<5,>=3.6.2 (from starlette>=0.46.0->fastapi->-r requirements.txt (line 1))
+#9 94.72   Downloading anyio-4.15.1-py3-none-any.whl.metadata (4.7 kB)
+#9 95.47 Collecting donfig>=0.8 (from zarr>=2.18.3->copernicusmarine->-r requirements.txt (line 11))
+#9 95.50   Downloading donfig-0.8.1.post1-py3-none-any.whl.metadata (5.0 kB)
+#9 96.33 Collecting google-crc32c>=1.5 (from zarr>=2.18.3->copernicusmarine->-r requirements.txt (line 11))
+#9 96.36   Downloading google_crc32c-1.8.0-cp312-cp312-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl.metadata (1.7 kB)
+#9 97.16 Collecting numcodecs>=0.14 (from zarr>=2.18.3->copernicusmarine->-r requirements.txt (line 11))
+#9 97.18   Downloading numcodecs-0.16.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (3.4 kB)
+#9 97.49 Collecting MarkupSafe>=2.0 (from jinja2->torch==2.5.1+cpu->-r requirements.txt (line 10))
+#9 97.57   Downloading https://download.pytorch.org/whl/markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+#9 98.50 Collecting pytz (from multiurl>=0.3.7->ecmwf-datastores-client>=0.4.0->cdsapi>=0.7.7->-r requirements.txt (line 14))
+#9 98.52   Downloading pytz-2026.3.post1-py2.py3-none-any.whl.metadata (22 kB)
+#9 99.30 Collecting locket (from partd>=1.4.0->dask>=2024.8.1->copernicusmarine->-r requirements.txt (line 11))
+#9 99.33   Downloading locket-1.0.0-py2.py3-none-any.whl.metadata (2.8 kB)
+#9 100.1 Collecting six>=1.5 (from python-dateutil>=2.8.2->pandas>=2.2->xarray->-r requirements.txt (line 12))
+#9 100.1   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+#9 100.5 Downloading sympy-1.13.1-py3-none-any.whl (6.2 MB)
+#9 101.5    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.2/6.2 MB 6.2 MB/s eta 0:00:00
+#9 101.6 Downloading fastapi-0.141.1-py3-none-any.whl (131 kB)
+#9 101.6 Downloading sqlalchemy-2.0.52-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (3.4 MB)
+#9 101.9    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.4/3.4 MB 13.1 MB/s eta 0:00:00
+#9 101.9 Downloading psycopg2_binary-2.9.13-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.3 MB)
+#9 102.2    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.3/4.3 MB 14.1 MB/s eta 0:00:00
+#9 102.2 Downloading numpy-2.5.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.7 MB)
+#9 104.1    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.7/16.7 MB 8.8 MB/s eta 0:00:00
+#9 104.1 Downloading copernicusmarine-2.4.1-py3-none-any.whl (130 kB)
+#9 104.2 Downloading xarray-2026.7.0-py3-none-any.whl (1.4 MB)
+#9 104.4    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.4/1.4 MB 8.1 MB/s eta 0:00:00
+#9 104.4 Downloading netcdf4-1.7.4-cp311-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (10.1 MB)
+#9 105.5    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.1/10.1 MB 9.9 MB/s eta 0:00:00
+#9 105.5 Downloading cdsapi-0.7.7-py2.py3-none-any.whl (12 kB)
+#9 105.5 Downloading python_dotenv-1.2.3-py3-none-any.whl (22 kB)
+#9 105.5 Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+#9 105.5 Downloading arcosparse-0.5.1-py3-none-any.whl (23 kB)
+#9 105.5 Downloading boto3-1.43.93-py3-none-any.whl (140 kB)
+#9 105.6 Downloading click-8.5.0-py3-none-any.whl (125 kB)
+#9 105.6 Downloading dask-2026.8.0-py3-none-any.whl (1.5 MB)
+#9 105.8    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.5/1.5 MB 10.5 MB/s eta 0:00:00
+#9 105.8 Downloading ecmwf_datastores_client-0.5.3-py3-none-any.whl (26 kB)
+#9 105.8 Downloading fsspec-2026.7.0-py3-none-any.whl (206 kB)
+#9 105.8 Downloading greenlet-3.5.5-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (621 kB)
+#9 105.9    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 621.4/621.4 kB 12.8 MB/s eta 0:00:00
+#9 105.9 Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+#9 105.9 Downloading h5netcdf-1.8.1-py3-none-any.whl (62 kB)
+#9 105.9 Downloading httptools-0.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (523 kB)
+#9 106.0 Downloading packaging-26.3-py3-none-any.whl (129 kB)
+#9 106.0 Downloading pandas-3.0.5-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (11.0 MB)
+#9 107.5    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.0/11.0 MB 8.0 MB/s eta 0:00:00
+#9 107.5 Downloading pydantic-2.13.5-py3-none-any.whl (472 kB)
+#9 107.5 Downloading pydantic_core-2.46.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+#9 107.7    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 14.1 MB/s eta 0:00:00
+#9 107.7 Downloading pystac-1.15.2-py3-none-any.whl (5.7 kB)
+#9 107.7 Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+#9 107.8    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 11.4 MB/s eta 0:00:00
+#9 107.8 Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+#9 107.8 Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+#9 107.9 Downloading semver-3.1.0-py3-none-any.whl (18 kB)
+#9 107.9 Downloading starlette-1.6.0-py3-none-any.whl (75 kB)
+#9 107.9 Downloading tqdm-4.70.1-py3-none-any.whl (80 kB)
+#9 107.9 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#9 107.9 Downloading typing_inspection-0.4.4-py3-none-any.whl (14 kB)
+#9 108.0 Downloading uvloop-0.22.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (4.4 MB)
+#9 108.4    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.4/4.4 MB 10.1 MB/s eta 0:00:00
+#9 108.4 Downloading watchfiles-1.2.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (456 kB)
+#9 108.5 Downloading websockets-17.1-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (224 kB)
+#9 108.5 Downloading zarr-3.3.0-py3-none-any.whl (363 kB)
+#9 108.6 Downloading cftime-1.6.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (1.6 MB)
+#9 108.8    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.6/1.6 MB 5.6 MB/s eta 0:00:00
+#9 108.9 Downloading filelock-3.32.6-py3-none-any.whl (100 kB)
+#9 109.0 Downloading https://download.pytorch.org/whl/jinja2-3.1.6-py3-none-any.whl (134 kB)
+#9 109.0 Downloading networkx-3.6.1-py3-none-any.whl (2.1 MB)
+#9 110.1    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 1.7 MB/s eta 0:00:00
+#9 110.1 Downloading setuptools-84.0.0-py3-none-any.whl (818 kB)
+#9 110.2    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 818.2/818.2 kB 19.1 MB/s eta 0:00:00
+#9 110.2 Downloading uvicorn-0.52.4-py3-none-any.whl (79 kB)
+#9 110.2 Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+#9 110.2 Downloading anyio-4.15.1-py3-none-any.whl (132 kB)
+#9 110.2 Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+#9 110.3 Downloading botocore-1.43.93-py3-none-any.whl (15.8 MB)
+#9 112.3    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 15.8/15.8 MB 10.7 MB/s eta 0:00:00
+#9 112.3 Downloading charset_normalizer-3.5.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (248 kB)
+#9 112.4 Downloading cloudpickle-3.1.2-py3-none-any.whl (22 kB)
+#9 112.4 Downloading donfig-0.8.1.post1-py3-none-any.whl (21 kB)
+#9 112.4 Downloading google_crc32c-1.8.0-cp312-cp312-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl (33 kB)
+#9 112.4 Downloading idna-3.19-py3-none-any.whl (68 kB)
+#9 112.5 Downloading jmespath-1.1.0-py3-none-any.whl (20 kB)
+#9 112.5 Downloading https://download.pytorch.org/whl/markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+#9 112.5 Downloading mpmath-1.3.0-py3-none-any.whl (536 kB)
+#9 112.6    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 36.8 MB/s eta 0:00:00
+#9 112.6 Downloading multiurl-0.3.9-py3-none-any.whl (22 kB)
+#9 112.6 Downloading numcodecs-0.16.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (9.2 MB)
+#9 113.4    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.2/9.2 MB 12.7 MB/s eta 0:00:00
+#9 113.4 Downloading partd-1.4.2-py3-none-any.whl (18 kB)
+#9 113.4 Downloading pyarrow-25.0.1-cp312-cp312-manylinux_2_28_x86_64.whl (50.1 MB)
+#9 118.1    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 50.1/50.1 MB 10.7 MB/s eta 0:00:00
+#9 118.1 Downloading pystac_core-1.15.2-py3-none-any.whl (117 kB)
+#9 118.1 Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+#9 118.1 Downloading s3transfer-0.19.2-py3-none-any.whl (90 kB)
+#9 118.1 Downloading toolz-1.1.0-py3-none-any.whl (58 kB)
+#9 118.1 Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)
+#9 118.2 Downloading h5py-3.16.0-cp312-cp312-manylinux_2_28_x86_64.whl (5.4 MB)
+#9 118.6    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.4/5.4 MB 13.8 MB/s eta 0:00:00
+#9 118.6 Downloading pystac_ext_classification-2.0.1-py3-none-any.whl (7.4 kB)
+#9 118.6 Downloading pystac_ext_datacube-2.2.1-py3-none-any.whl (7.1 kB)
+#9 118.6 Downloading pystac_ext_eo-1.1.1-py3-none-any.whl (7.7 kB)
+#9 118.6 Downloading pystac_ext_file-2.1.1-py3-none-any.whl (5.8 kB)
+#9 118.6 Downloading pystac_ext_grid-1.1.1-py3-none-any.whl (3.6 kB)
+#9 118.6 Downloading pystac_ext_item_assets-1.0.1-py3-none-any.whl (3.7 kB)
+#9 118.6 Downloading pystac_ext_label-1.0.2-py3-none-any.whl (8.2 kB)
+#9 118.6 Downloading pystac_ext_mgrs-1.0.1-py3-none-any.whl (4.1 kB)
+#9 118.7 Downloading pystac_ext_mlm-1.4.1-py3-none-any.whl (13 kB)
+#9 118.7 Downloading pystac_ext_pointcloud-1.0.1-py3-none-any.whl (6.5 kB)
+#9 118.7 Downloading pystac_ext_projection-2.0.1-py3-none-any.whl (7.4 kB)
+#9 118.7 Downloading pystac_ext_raster-1.1.1-py3-none-any.whl (6.8 kB)
+#9 118.7 Downloading pystac_ext_render-2.0.0-py3-none-any.whl (5.0 kB)
+#9 118.7 Downloading pystac_ext_sar-1.0.1-py3-none-any.whl (6.5 kB)
+#9 118.7 Downloading pystac_ext_sat-1.0.1-py3-none-any.whl (4.9 kB)
+#9 118.7 Downloading pystac_ext_scientific-1.0.1-py3-none-any.whl (5.5 kB)
+#9 118.8 Downloading pystac_ext_storage-2.0.1-py3-none-any.whl (7.6 kB)
+#9 118.8 Downloading pystac_ext_table-1.2.1-py3-none-any.whl (4.7 kB)
+#9 118.8 Downloading pystac_ext_timestamps-1.1.1-py3-none-any.whl (4.6 kB)
+#9 118.8 Downloading pystac_ext_version-1.2.1-py3-none-any.whl (5.8 kB)
+#9 118.9 Downloading pystac_ext_view-1.0.1-py3-none-any.whl (4.8 kB)
+#9 118.9 Downloading pystac_ext_xarray_assets-1.0.1-py3-none-any.whl (3.9 kB)
+#9 118.9 Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+#9 118.9 Downloading locket-1.0.0-py2.py3-none-any.whl (4.4 kB)
+#9 118.9 Downloading pytz-2026.3.post1-py2.py3-none-any.whl (508 kB)
+#9 119.9 Installing collected packages: pytz, mpmath, websockets, uvloop, urllib3, typing-extensions, tqdm, toolz, sympy, six, setuptools, semver, pyyaml, python-dotenv, pyarrow, psycopg2-binary, packaging, numpy, networkx, MarkupSafe, locket, jmespath, idna, httptools, h11, greenlet, google-crc32c, fsspec, filelock, cloudpickle, click, charset_normalizer, certifi, attrs, annotated-types, annotated-doc, uvicorn, typing-inspection, sqlalchemy, requests, python-dateutil, pydantic-core, partd, numcodecs, jinja2, h5py, h5netcdf, donfig, cftime, anyio, zarr, watchfiles, torch, starlette, pystac-core, pydantic, pandas, netCDF4, multiurl, dask, botocore, xarray, s3transfer, pystac-ext-xarray-assets, pystac-ext-view, pystac-ext-version, pystac-ext-timestamps, pystac-ext-table, pystac-ext-storage, pystac-ext-scientific, pystac-ext-sat, pystac-ext-sar, pystac-ext-render, pystac-ext-raster, pystac-ext-projection, pystac-ext-pointcloud, pystac-ext-mgrs, pystac-ext-label, pystac-ext-item-assets, pystac-ext-grid, pystac-ext-file, pystac-ext-datacube, fastapi, ecmwf-datastores-client, pystac-ext-eo, pystac-ext-classification, cdsapi, boto3, pystac-ext-mlm, pystac, arcosparse, copernicusmarine
+#9 286.0 Successfully installed MarkupSafe-3.0.3 annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.15.1 arcosparse-0.5.1 attrs-26.1.0 boto3-1.43.93 botocore-1.43.93 cdsapi-0.7.7 certifi-2026.7.22 cftime-1.6.5 charset_normalizer-3.5.1 click-8.5.0 cloudpickle-3.1.2 copernicusmarine-2.4.1 dask-2026.8.0 donfig-0.8.1.post1 ecmwf-datastores-client-0.5.3 fastapi-0.141.1 filelock-3.32.6 fsspec-2026.7.0 google-crc32c-1.8.0 greenlet-3.5.5 h11-0.16.0 h5netcdf-1.8.1 h5py-3.16.0 httptools-0.8.0 idna-3.19 jinja2-3.1.6 jmespath-1.1.0 locket-1.0.0 mpmath-1.3.0 multiurl-0.3.9 netCDF4-1.7.4 networkx-3.6.1 numcodecs-0.16.5 numpy-2.5.3 packaging-26.3 pandas-3.0.5 partd-1.4.2 psycopg2-binary-2.9.13 pyarrow-25.0.1 pydantic-2.13.5 pydantic-core-2.46.5 pystac-1.15.2 pystac-core-1.15.2 pystac-ext-classification-2.0.1 pystac-ext-datacube-2.2.1 pystac-ext-eo-1.1.1 pystac-ext-file-2.1.1 pystac-ext-grid-1.1.1 pystac-ext-item-assets-1.0.1 pystac-ext-label-1.0.2 pystac-ext-mgrs-1.0.1 pystac-ext-mlm-1.4.1 pystac-ext-pointcloud-1.0.1 pystac-ext-projection-2.0.1 pystac-ext-raster-1.1.1 pystac-ext-render-2.0.0 pystac-ext-sar-1.0.1 pystac-ext-sat-1.0.1 pystac-ext-scientific-1.0.1 pystac-ext-storage-2.0.1 pystac-ext-table-1.2.1 pystac-ext-timestamps-1.1.1 pystac-ext-version-1.2.1 pystac-ext-view-1.0.1 pystac-ext-xarray-assets-1.0.1 python-dateutil-2.9.0.post0 python-dotenv-1.2.3 pytz-2026.3.post1 pyyaml-6.0.3 requests-2.34.2 s3transfer-0.19.2 semver-3.1.0 setuptools-84.0.0 six-1.17.0 sqlalchemy-2.0.52 starlette-1.6.0 sympy-1.13.1 toolz-1.1.0 torch-2.5.1+cpu tqdm-4.70.1 typing-extensions-4.16.0 typing-inspection-0.4.4 urllib3-2.7.0 uvicorn-0.52.4 uvloop-0.22.1 watchfiles-1.2.0 websockets-17.1 xarray-2026.7.0 zarr-3.3.0
+#9 286.0 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#9 286.7 
+#9 286.7 [notice] A new release of pip is available: 25.0.1 -> 26.2.1
+#9 286.7 [notice] To update, run: pip install --upgrade pip
+#9 DONE 290.1s
+
+#10 [5/5] COPY app ./app
+#10 DONE 1.7s
+
+#11 exporting to image
+#11 exporting layers
+#11 exporting layers 208.1s done
+#11 exporting manifest sha256:497e25345d7c995db1b1acd93c187b1e8c3bf787db640b464019472fbfe89ff3
+#11 exporting manifest sha256:497e25345d7c995db1b1acd93c187b1e8c3bf787db640b464019472fbfe89ff3 1.3s done
+#11 exporting config sha256:f3214372f9ee98a11c9d9e2af51459f1c46e39073bd66371da53fd79458dafd8
+#11 exporting config sha256:f3214372f9ee98a11c9d9e2af51459f1c46e39073bd66371da53fd79458dafd8 0.4s done
+#11 exporting attestation manifest sha256:9bd80582c6effeb05158107b7b6761eb4bc2bcce2f082ac24ae6a485346aabdb 0.1s done
+#11 exporting manifest list sha256:97fe03cf366736c0ce131c2b61c5b10c281923a422e8027304ed98ac8be0d5f0 0.0s done
+#11 naming to docker.io/library/ocean-backend-api:latest 0.1s done
+#11 unpacking to docker.io/library/ocean-backend-api:latest
+#11 unpacking to docker.io/library/ocean-backend-api:latest 82.2s done
+#11 DONE 292.3s
+
+#12 resolving provenance for metadata file
+#12 DONE 0.3s
+ ocean-backend-api  Built

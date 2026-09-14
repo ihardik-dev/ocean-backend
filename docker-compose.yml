@@ -1,5 +1,4 @@
 services:
-
   api:
     build: .
     ports:
@@ -10,6 +9,17 @@ services:
       - ./model:/app/model
     environment:
       DATABASE_URL: postgresql://ocean:password@postgis:5432/ocean_db
+      # The SERVICE names are the current Copernicus Marine Toolbox standard.
+      # Legacy names remain available temporarily for existing local .env files.
+      COPERNICUSMARINE_SERVICE_USERNAME: ${COPERNICUSMARINE_SERVICE_USERNAME:-}
+      COPERNICUSMARINE_SERVICE_PASSWORD: ${COPERNICUSMARINE_SERVICE_PASSWORD:-}
+      COPERNICUSMARINE_USERNAME: ${COPERNICUSMARINE_USERNAME:-}
+      COPERNICUSMARINE_PASSWORD: ${COPERNICUSMARINE_PASSWORD:-}
+      COPERNICUSMARINE_DATASET_ID: ${COPERNICUSMARINE_DATASET_ID:-}
+      COPERNICUSMARINE_FORECAST_DATASET_ID: ${COPERNICUSMARINE_FORECAST_DATASET_ID:-}
+      COPERNICUSMARINE_MULTIYEAR_DATASET_ID: ${COPERNICUSMARINE_MULTIYEAR_DATASET_ID:-}
+      CDS_API_KEY: ${CDS_API_KEY}
+      CDS_API_URL: ${CDS_API_URL:-https://cds.climate.copernicus.eu/api}
     depends_on:
       - postgis
 

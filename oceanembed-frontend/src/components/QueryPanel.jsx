@@ -4,8 +4,20 @@ const FIELDS = [
   { key: "sst", label: "Sea surface temperature", unit: "°C", step: "0.01" },
   { key: "sss", label: "Sea surface salinity", unit: "PSU", step: "0.01" },
   { key: "ssh", label: "Sea surface height", unit: "m", step: "0.001" },
-  { key: "current_u", label: "Current — eastward (u)", unit: "m/s", step: "0.001" },
-  { key: "current_v", label: "Current — northward (v)", unit: "m/s", step: "0.001" },
+  {
+    key: "current_u",
+    label: "Current — eastward (u)",
+    unit: "m/s",
+    step: "0.001",
+  },
+  {
+    key: "current_v",
+    label: "Current — northward (v)",
+    unit: "m/s",
+    step: "0.001",
+  },
+  { key: "wind_u", label: "Wind — eastward (u)", unit: "m/s", step: "0.001" },
+  { key: "wind_v", label: "Wind — northward (v)", unit: "m/s", step: "0.001" },
 ];
 
 export default function QueryPanel({
@@ -45,7 +57,9 @@ export default function QueryPanel({
 
         <div className="field-row">
           <label className="field">
-            <span>Latitude ({DOMAIN.latMin}° – {DOMAIN.latMax}°N)</span>
+            <span>
+              Latitude ({DOMAIN.latMin}° – {DOMAIN.latMax}°N)
+            </span>
             <input
               type="number"
               step="0.01"
@@ -57,7 +71,9 @@ export default function QueryPanel({
             />
           </label>
           <label className="field">
-            <span>Longitude ({DOMAIN.lonMin}° – {DOMAIN.lonMax}°E)</span>
+            <span>
+              Longitude ({DOMAIN.lonMin}° – {DOMAIN.lonMax}°E)
+            </span>
             <input
               type="number"
               step="0.01"
@@ -76,7 +92,9 @@ export default function QueryPanel({
           onClick={onFetchSurface}
           disabled={fetching}
         >
-          {fetching ? "Fetching stored surface data…" : "Fetch stored surface data"}
+          {fetching
+            ? "Fetching stored surface data…"
+            : "Fetch stored surface data"}
         </button>
         {fetchNote && <p className="field-note">{fetchNote}</p>}
       </section>

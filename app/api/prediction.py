@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models.ocean_data import OceanData
 from app.models.prediction import Prediction
+from app.services.copernicus_service import ProviderError, fetch_surface_data
 
 router = APIRouter()
 
@@ -20,6 +21,8 @@ class PredictionRequest(BaseModel):
     ssh: float
     current_u: float
     current_v: float
+    wind_u: float
+    wind_v: float
 
 
 @router.post("/predict")
@@ -33,7 +36,9 @@ def predict(
     "sss": request.sss,
     "ssh": request.ssh,
     "current_u": request.current_u,
-    "current_v": request.current_v
+    "current_v": request.current_v,
+    "wind_u": request.wind_u,
+    "wind_v": request.wind_v
 }
 
     result = generate_prediction(ocean_data)
@@ -68,6 +73,7 @@ def ocean_data(
     date: date,
     lat: float = Query(..., ge=5, le=30),
     lon: float = Query(..., ge=45, le=105),
+    refresh: bool = Query(False),
     db: Session = Depends(get_db)
 ):
 
@@ -84,11 +90,33 @@ def ocean_data(
         .first()
     )
 
-    if row is None:
-        raise HTTPException(
-            status_code=404,
-            detail="No ocean data found for this location and date"
-        )
+    if row is None or refresh:
+        try:
+            values = fetch_surface_data(date, grid_lat, grid_lon)
+        except ProviderError as exc:
+            raise HTTPException(
+                status_code=502,
+                detail=f"{exc.provider} data retrieval failed: {exc}",
+            ) from exc
+        except Exception as exc:
+            raise HTTPException(
+                status_code=502,
+                detail=f"Unexpected ocean-data retrieval failure: {exc}",
+            ) from exc
+
+        if row is None:
+            row = OceanData(
+                date=date,
+                lat=grid_lat,
+                lon=grid_lon,
+                **values,
+            )
+            db.add(row)
+        else:
+            for key, value in values.items():
+                setattr(row, key, value)
+        db.commit()
+        db.refresh(row)
 
     return {
         "date": row.date,
