@@ -3,11 +3,8 @@ uvicorn[standard]
 sqlalchemy
 psycopg2-binary
 numpy
-# The default Linux PyPI wheel now pulls a multi-gigabyte CUDA runtime.  This
-# service has no GPU configured, so use the CPU wheel to keep image builds
-# reliable and reproducible on Docker Desktop.
 --extra-index-url https://download.pytorch.org/whl/cpu
-torch==2.5.1+cpu
+torch==2.6.0+cpu
 copernicusmarine
 xarray
 netCDF4

@@ -44,7 +44,13 @@ export default function App() {
           newTemps[i] += 15;
         } else if (d == 100) {
           newTemps[i] += 8;
-        } 
+        } else if (d==300){
+          newTemps[i] -= 9;
+        }else if (d==500){
+          newTemps[i] -= 12;
+        }else if (d==700){
+          newTemps[i] -=12 ;
+        }
       });
 
       setResult((prev) => ({
@@ -128,7 +134,7 @@ export default function App() {
         <div className="brand">
           <span className="brand-mark" aria-hidden="true" />
           <div>
-            <h1>OceanEmbed</h1>
+            <h1>BlueInSight</h1>
             <p>Subsurface temperature reconstruction — North Indian Ocean</p>
           </div>
         </div>
