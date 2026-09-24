@@ -133,12 +133,17 @@ body {
   gap: 22px;
   position: sticky;
   top: 24px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .field-group {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  width: 100%;
+  min-width: 0;
 }
 
 .field-group h2 {
@@ -157,8 +162,9 @@ body {
 
 .field-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
+  width: 100%;
 }
 
 .field {
@@ -167,6 +173,8 @@ body {
   gap: 6px;
   font-size: 13px;
   color: var(--text-muted);
+  width: 100%;
+  min-width: 0;
 }
 
 .field span em {
@@ -176,6 +184,10 @@ body {
 }
 
 .field input {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   background: var(--panel-alt);
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -345,6 +357,170 @@ body {
 .profile-table td.mono {
   font-family: var(--font-mono);
   color: var(--accent-warm);
+}
+
+/* ---------- View Navigation ---------- */
+
+.view-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px 12px;
+}
+
+.view-tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.tab-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover:not(:disabled) {
+  color: var(--text);
+  background: var(--panel-alt);
+}
+
+.tab-btn.active {
+  background: var(--panel-alt);
+  color: var(--accent-cool);
+  border-color: var(--border);
+}
+
+.tab-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.view-map-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--panel-alt);
+  border-color: var(--accent-cool);
+  color: var(--accent-cool);
+}
+
+.view-map-btn:hover {
+  background: var(--accent-cool);
+  color: #0b1b24;
+}
+
+/* ---------- Leaflet Map Component ---------- */
+
+.map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 540px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.leaflet-container-box {
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  z-index: 1;
+}
+
+.map-controls {
+  position: absolute;
+  z-index: 1000;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(16, 38, 49, 0.94);
+  backdrop-filter: blur(8px);
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.map-input {
+  background: var(--panel-alt);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 6px;
+  width: 220px;
+  font-size: 13px;
+}
+
+.map-input:focus {
+  border-color: var(--accent-cool);
+  outline: none;
+}
+
+.map-btn {
+  padding: 8px 16px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.map-btn:hover {
+  background: #1d4ed8;
+}
+
+.map-coord-box {
+  position: absolute;
+  z-index: 1000;
+  bottom: 16px;
+  left: 16px;
+  background: rgba(16, 38, 49, 0.94);
+  backdrop-filter: blur(8px);
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.map-latlng {
+  font-family: var(--font-mono);
+  color: var(--accent-cool);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.map-error-toast {
+  position: absolute;
+  z-index: 1000;
+  top: 66px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 107, 107, 0.95);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* ---------- Footer ---------- */

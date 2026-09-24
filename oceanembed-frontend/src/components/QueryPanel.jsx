@@ -62,7 +62,7 @@ export default function QueryPanel({
             </span>
             <input
               type="number"
-              step="0.01"
+              step="any"
               min={DOMAIN.latMin}
               max={DOMAIN.latMax}
               value={form.lat}
@@ -76,7 +76,7 @@ export default function QueryPanel({
             </span>
             <input
               type="number"
-              step="0.01"
+              step="any"
               min={DOMAIN.lonMin}
               max={DOMAIN.lonMax}
               value={form.lon}

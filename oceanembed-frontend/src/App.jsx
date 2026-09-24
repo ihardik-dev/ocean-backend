@@ -3,6 +3,7 @@ import QueryPanel from "./components/QueryPanel.jsx";
 import WaterColumn from "./components/WaterColumn.jsx";
 import ProfileChart from "./components/ProfileChart.jsx";
 import ProfileTable from "./components/ProfileTable.jsx";
+import MapView from "./components/MapView.jsx";
 import { fetchOceanData, submitPrediction, extractProfile } from "./api.js";
 
 const today = new Date().toISOString().slice(0, 10);
@@ -27,9 +28,18 @@ export default function App() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [result, setResult] = useState(null); // { depths, temperatures, lat, lon, date }
+  const [activeView, setActiveView] = useState("map"); // "map" | "graphs"
 
   const updateField = (key, value) => {
     setForm((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const handleSelectLocation = ({ lat, lon }) => {
+    setForm((prev) => ({
+      ...prev,
+      lat: String(lat),
+      lon: String(lon),
+    }));
   };
 
   useEffect(() => {
@@ -38,18 +48,18 @@ export default function App() {
       result.depths.forEach((d, i) => {
         if (d === 30) {
           newTemps[i] += 8.7;
-        } else if (d == 50) {
+        } else if (d === 50) {
           newTemps[i] += 21.5;
-        } else if (d == 75) {
+        } else if (d === 75) {
           newTemps[i] += 15;
-        } else if (d == 100) {
+        } else if (d === 100) {
           newTemps[i] += 8;
-        } else if (d==300){
+        } else if (d === 300) {
           newTemps[i] -= 9;
-        }else if (d==500){
+        } else if (d === 500) {
           newTemps[i] -= 12;
-        }else if (d==700){
-          newTemps[i] -=12 ;
+        } else if (d === 700) {
+          newTemps[i] -= 12;
         }
       });
 
@@ -121,6 +131,9 @@ export default function App() {
         lon,
         date: form.date,
       });
+
+      // Automatically switch view from map to temperature graphs page
+      setActiveView("graphs");
     } catch (err) {
       setError(err.message);
     } finally {
@@ -153,44 +166,93 @@ export default function App() {
         />
 
         <section className="results-panel">
+          <div className="view-header">
+            <div className="view-tabs">
+              <button
+                type="button"
+                className={`tab-btn ${activeView === "map" ? "active" : ""}`}
+                onClick={() => setActiveView("map")}
+              >
+                🗺️ Interactive Map
+              </button>
+              <button
+                type="button"
+                className={`tab-btn ${activeView === "graphs" ? "active" : ""}`}
+                onClick={() => setActiveView("graphs")}
+                disabled={!result}
+              >
+                📊 Profile Graphs {result ? "" : "(Reconstruct first)"}
+              </button>
+            </div>
+            {activeView === "graphs" && (
+              <button
+                type="button"
+                className="btn btn-ghost view-map-btn"
+                onClick={() => setActiveView("map")}
+              >
+                🗺️ View map
+              </button>
+            )}
+          </div>
+
           {error && <div className="error-banner">{error}</div>}
 
-          {!result && !error && (
-            <div className="empty-state">
-              <h2>No reconstruction yet</h2>
-              <p>
-                Set a location and surface parameters, then reconstruct a
-                temperature profile to see it here.
-              </p>
-            </div>
+          {activeView === "map" && (
+            <MapView
+              currentLat={form.lat}
+              currentLon={form.lon}
+              onSelectLocation={handleSelectLocation}
+            />
           )}
 
-          {result && (
+          {activeView === "graphs" && (
             <>
-              <div className="result-meta">
-                <span>
-                  {result.lat.toFixed(2)}°N, {result.lon.toFixed(2)}°E
-                </span>
-                <span>{result.date}</span>
-              </div>
-
-              <div className="result-grid">
-                <WaterColumn
-                  depths={result.depths}
-                  temperatures={result.temperatures}
-                />
-
-                <div className="result-secondary">
-                  <ProfileChart
-                    depths={result.depths}
-                    temperatures={result.temperatures}
-                  />
-                  <ProfileTable
-                    depths={result.depths}
-                    temperatures={result.temperatures}
-                  />
+              {!result && !error && (
+                <div className="empty-state">
+                  <h2>No reconstruction yet</h2>
+                  <p>
+                    Set a location on the map and surface parameters, then
+                    click &quot;Reconstruct profile&quot; to see temperature graphs.
+                  </p>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    style={{ marginTop: "16px" }}
+                    onClick={() => setActiveView("map")}
+                  >
+                    🗺️ View map
+                  </button>
                 </div>
-              </div>
+              )}
+
+              {result && (
+                <>
+                  <div className="result-meta">
+                    <span>
+                      {result.lat.toFixed(2)}°N, {result.lon.toFixed(2)}°E
+                    </span>
+                    <span>{result.date}</span>
+                  </div>
+
+                  <div className="result-grid">
+                    <WaterColumn
+                      depths={result.depths}
+                      temperatures={result.temperatures}
+                    />
+
+                    <div className="result-secondary">
+                      <ProfileChart
+                        depths={result.depths}
+                        temperatures={result.temperatures}
+                      />
+                      <ProfileTable
+                        depths={result.depths}
+                        temperatures={result.temperatures}
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
             </>
           )}
         </section>
