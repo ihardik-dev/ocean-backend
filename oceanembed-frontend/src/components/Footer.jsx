@@ -1,10 +1,8 @@
-import { Link } from "react-router-dom";
+﻿import React from "react";
 
-const Footer = () => {
+export default function Footer({ onNavigate }) {
   return (
     <footer className="ocean-footer">
-
-      {/* Top technical line */}
       <div className="footer-line">
         <span></span>
         <p>OCEAN EMBED / DEEP OCEAN INTELLIGENCE SYSTEM</p>
@@ -12,16 +10,18 @@ const Footer = () => {
       </div>
 
       <div className="footer-container">
-
-        {/* Brand */}
         <div className="footer-brand">
-          <Link to="/" className="footer-logo">
+          <div
+            className="footer-logo"
+            style={{ cursor: "pointer" }}
+            onClick={() => onNavigate && onNavigate("landing")}
+          >
             OCEAN<span>EMBED</span>
-          </Link>
+          </div>
 
           <p>
-            Satellite embedding-based deep learning framework
-            for reconstruction of subsurface ocean temperature.
+            Satellite embedding-based deep learning framework for
+            reconstruction of subsurface ocean temperature.
           </p>
 
           <div className="system-status">
@@ -30,67 +30,46 @@ const Footer = () => {
           </div>
         </div>
 
-
-        {/* Navigation */}
         <div className="footer-column">
           <h4>NAVIGATION</h4>
-
-          <Link to="/">Home</Link>
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/results">Results</Link>
-          <Link to="/about">About</Link>
+          <span style={{ cursor: "pointer" }} onClick={() => onNavigate && onNavigate("landing")}>Home</span>
+          <span style={{ cursor: "pointer" }} onClick={() => onNavigate && onNavigate("dashboard")}>Dashboard</span>
+          <a href="#pipeline">Pipeline</a>
+          <a href="#technology">Technology</a>
         </div>
 
-
-        {/* Technology */}
         <div className="footer-column">
           <h4>TECHNOLOGY</h4>
-
           <span>Satellite Observations</span>
           <span>Deep Learning</span>
           <span>Ocean Embeddings</span>
           <span>Temperature Reconstruction</span>
         </div>
 
-
-        {/* Project info */}
         <div className="footer-column">
-          <h4>PROJECT</h4>
-
-          <span>Smart India Hackathon</span>
-          <span>Ocean Intelligence</span>
-          <span>Research Framework</span>
+          <h4>REGION FOCUS</h4>
+          <span>North Indian Ocean</span>
+          <span>Arabian Sea & Bay of Bengal</span>
+          <span>Depth: 0m to 1000m</span>
 
           <div className="coordinates">
             <span>LAT</span>
-            <strong>15.000°</strong>
-
+            <strong>15.000° N</strong>
             <span>LON</span>
-            <strong>75.000°</strong>
+            <strong>80.000° E</strong>
           </div>
         </div>
-
       </div>
 
-
-      {/* Bottom */}
       <div className="footer-bottom">
-
-        <p>
-          © 2026 OceanEmbed. Built for ocean intelligence.
-        </p>
+        <p>© 2026 OceanEmbed. Built for ocean intelligence.</p>
 
         <div className="footer-meta">
           <span>v1.0</span>
           <span>•</span>
-          <span>AI / SATELLITE / OCEAN</span>
+          <span>AI / SATELLITE / OCEAN RECONSTRUCTION</span>
         </div>
-
       </div>
-
     </footer>
   );
-};
-
-export default Footer;
-
+}
